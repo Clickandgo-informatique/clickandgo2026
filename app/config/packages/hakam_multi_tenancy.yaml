@@ -1,0 +1,17 @@
+hakam_multi_tenancy:
+    tenant_entity_manager: tenant
+    tenant_connection: tenant
+
+    # Classe Doctrine qui stocke les infos des tenants
+    tenant_database_className: App\Entity\Main\TenantDbConfig
+
+    # Nom du champ dans TenantDbConfig qui contient le nom de la base tenant
+    tenant_database_identifier: databaseName
+
+    # Service qui récupère la config tenant depuis la base main
+    tenant_config_provider: App\Tenant\TenantConfigProvider
+
+    # (Optionnel) migrations séparées pour les tenants
+    tenant_migration:
+        enabled: true
+        path: "%kernel.project_dir%/migrations/tenant"

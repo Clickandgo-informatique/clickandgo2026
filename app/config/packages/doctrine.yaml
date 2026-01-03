@@ -1,0 +1,31 @@
+doctrine:
+    dbal:
+        default_connection: main
+        connections:
+            main:
+                url: "%env(resolve:DATABASE_URL)%"
+
+            tenant:
+                url: "%env(resolve:TENANT_DATABASE_URL)%"
+
+    orm:
+        auto_mapping: false
+
+        entity_managers:
+            main:
+                connection: main
+                mappings:
+                    Main:
+                        is_bundle: false
+                        type: attribute
+                        dir: "%kernel.project_dir%/src/Entity/Main"
+                        prefix: 'App\Entity\Main'
+
+            tenant:
+                connection: tenant
+                mappings:
+                    Tenant:
+                        is_bundle: false
+                        type: attribute
+                        dir: "%kernel.project_dir%/src/Entity/Tenant"
+                        prefix: 'App\Entity\Tenant'
