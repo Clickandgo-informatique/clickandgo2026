@@ -7,7 +7,7 @@ services:
     working_dir: /var/www/html
     volumes:
       - ./app:/var/www/html
-      - ./docker:/var/www/docker       
+    entrypoint: ["/usr/local/bin/entrypoint.sh"]
     environment:
       APP_ENV: dev
     depends_on:
