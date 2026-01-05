@@ -1,0 +1,5 @@
+# config/routes/tenant.yaml
+tenant_routes:
+    resource: ../../src/Controller/Tenant/
+    type: attribute
+    prefix: /{tenantKey}

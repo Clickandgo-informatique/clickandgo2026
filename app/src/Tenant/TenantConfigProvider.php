@@ -13,7 +13,20 @@ class TenantConfigProvider implements TenantConfigProviderInterface
 {
     public function __construct(private EntityManagerInterface $emMain) {}
 
-    public function getTenantConfig(string $tenantKey)
+    public function tenantExists(string $tenantKey): bool
+    {
+        return (bool) $this->emMain
+            ->getRepository(TenantDbConfig::class)
+            ->findOneBy(['tenantKey' => $tenantKey]);
+    }
+
+    // 👉 C’EST ICI que tu mets la méthode
+    public function getFallbackTenant(): string
+    {
+        return 'main'; // ou 'default', 'public', etc.
+    }
+
+    public function getTenantConfig(string $tenantKey): ?TenantDbConfig
     {
         return $this->emMain
             ->getRepository(TenantDbConfig::class)
@@ -25,20 +38,18 @@ class TenantConfigProvider implements TenantConfigProviderInterface
         $config = $this->getTenantConfig($identifier);
 
         if (!$config) {
-            // Le tenant n'existe pas encore → base non créée
             return TenantConnectionConfigDTO::fromArgs(
                 identifier: $identifier,
                 driver: DriverTypeEnum::POSTGRES,
                 dbStatus: DatabaseStatusEnum::DATABASE_NOT_CREATED,
                 host: 'postgres',
                 port: 5432,
-                dbname: '',
+                dbname: $identifier . '_db',
                 user: 'postgres',
                 password: 'postgres'
             );
         }
 
-        // Le tenant existe → base créée (mais pas forcément migrée)
         return TenantConnectionConfigDTO::fromArgs(
             identifier: $identifier,
             driver: DriverTypeEnum::POSTGRES,

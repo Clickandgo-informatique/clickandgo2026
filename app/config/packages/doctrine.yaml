@@ -1,19 +1,25 @@
 doctrine:
     dbal:
-        default_connection: main
+        default_connection: default
         connections:
-            main:
+            default:
                 url: "%env(resolve:DATABASE_URL)%"
 
             tenant:
-                url: "%env(resolve:TENANT_DATABASE_URL)%"
+                # Valeurs placeholder, remplacées dynamiquement par Hakam
+                driver: "pdo_pgsql"
+                host: ""
+                port: ""
+                dbname: ""
+                user: ""
+                password: ""
 
     orm:
-        auto_mapping: false
+        default_entity_manager: default
 
         entity_managers:
-            main:
-                connection: main
+            default:
+                connection: default
                 mappings:
                     Main:
                         is_bundle: false

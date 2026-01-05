@@ -1,14 +1,22 @@
-parameters:
-
 services:
-    # Enregistre ton TenantConfigProvider
-    App\Tenant\TenantConfigProvider: ~
-
-    # default configuration for services in *this* file
+    # Configuration par défaut pour tous les services
     _defaults:
         autowire: true
         autoconfigure: true
 
-    # makes classes in src/ available to be used as services
+    # Charge automatiquement toutes les classes de src/
     App\:
-        resource: "../src/"
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+    # Enregistre ton TenantConfigProvider
+    App\Tenant\TenantConfigProvider: ~
+
+    # Enregistre ton TenantResolver
+    App\Tenant\PathTenantResolver:
+        tags:
+            - { name: hakam.tenant_resolver }
