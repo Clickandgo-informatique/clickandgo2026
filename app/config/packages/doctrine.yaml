@@ -1,20 +1,9 @@
 doctrine:
     dbal:
-        default_connection: default
-        connections:
-            default:
-                url: "%env(resolve:DATABASE_URL)%"
-
-            tenant:
-                # Valeurs placeholder, remplacées dynamiquement par Hakam
-                driver: "pdo_pgsql"
-                host: ""
-                port: ""
-                dbname: ""
-                user: ""
-                password: ""
+        url: "%env(resolve:DATABASE_URL)%"
 
     orm:
+        auto_generate_proxy_classes: true
         default_entity_manager: default
 
         entity_managers:
@@ -26,12 +15,3 @@ doctrine:
                         type: attribute
                         dir: "%kernel.project_dir%/src/Entity/Main"
                         prefix: 'App\Entity\Main'
-
-            tenant:
-                connection: tenant
-                mappings:
-                    Tenant:
-                        is_bundle: false
-                        type: attribute
-                        dir: "%kernel.project_dir%/src/Entity/Tenant"
-                        prefix: 'App\Entity\Tenant'

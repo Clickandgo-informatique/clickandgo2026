@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "875bcd367a82fc773f5b721a8565d135",
+    "content-hash": "0825cdadf66fdc33e038aa29f7215e07",
     "packages": [
         {
             "name": "composer/semver",
@@ -82,83 +82,6 @@
                 }
             ],
             "time": "2025-08-20T19:15:30+00:00"
-        },
-        {
-            "name": "doctrine/annotations",
-            "version": "2.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/annotations.git",
-                "reference": "901c2ee5d26eb64ff43c47976e114bf00843acf7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/901c2ee5d26eb64ff43c47976e114bf00843acf7",
-                "reference": "901c2ee5d26eb64ff43c47976e114bf00843acf7",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/lexer": "^2 || ^3",
-                "ext-tokenizer": "*",
-                "php": "^7.2 || ^8.0",
-                "psr/cache": "^1 || ^2 || ^3"
-            },
-            "require-dev": {
-                "doctrine/cache": "^2.0",
-                "doctrine/coding-standard": "^10",
-                "phpstan/phpstan": "^1.10.28",
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
-                "symfony/cache": "^5.4 || ^6.4 || ^7",
-                "vimeo/psalm": "^4.30 || ^5.14"
-            },
-            "suggest": {
-                "php": "PHP 8.0 or higher comes with attributes, a native replacement for annotations"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Doctrine\\Common\\Annotations\\": "lib/Doctrine/Common/Annotations"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com"
-                },
-                {
-                    "name": "Roman Borschel",
-                    "email": "roman@code-factory.org"
-                },
-                {
-                    "name": "Benjamin Eberlei",
-                    "email": "kontakt@beberlei.de"
-                },
-                {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com"
-                },
-                {
-                    "name": "Johannes Schmitt",
-                    "email": "schmittjoh@gmail.com"
-                }
-            ],
-            "description": "Docblock Annotations Parser",
-            "homepage": "https://www.doctrine-project.org/projects/annotations.html",
-            "keywords": [
-                "annotations",
-                "docblock",
-                "parser"
-            ],
-            "support": {
-                "issues": "https://github.com/doctrine/annotations/issues",
-                "source": "https://github.com/doctrine/annotations/tree/2.0.2"
-            },
-            "abandoned": true,
-            "time": "2024-09-05T10:17:24+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -1347,60 +1270,6 @@
                 }
             ],
             "time": "2025-03-06T22:45:56+00:00"
-        },
-        {
-            "name": "hakam/multi-tenancy-bundle",
-            "version": "v2.9.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/RamyHakam/multi_tenancy_bundle.git",
-                "reference": "31ee46ad78ae165c4e0bb5ef84c919d4c5a60ad3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/RamyHakam/multi_tenancy_bundle/zipball/31ee46ad78ae165c4e0bb5ef84c919d4c5a60ad3",
-                "reference": "31ee46ad78ae165c4e0bb5ef84c919d4c5a60ad3",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/annotations": "^2.0",
-                "doctrine/doctrine-bundle": "^2.7",
-                "doctrine/doctrine-migrations-bundle": "^3.0",
-                "php": "^8.1|^8.2|^8.3|^8.4",
-                "symfony/config": " ^v6.4.0|^7.0",
-                "symfony/dependency-injection": "   ^v6.4.0|^7.0",
-                "symfony/filesystem": "^6.4|^7.0",
-                "symfony/http-kernel": " ^v6.4.0|^7.0",
-                "symfony/orm-pack": "^2.0"
-            },
-            "require-dev": {
-                "dg/bypass-finals": "^1.9",
-                "doctrine/doctrine-fixtures-bundle": "^3.6",
-                "phpunit/phpunit": "^9.5",
-                "symfony/phpunit-bridge": "^v6.4.0|^7.0"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "Hakam\\MultiTenancyBundle\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ramy hakam",
-                    "email": "pencilsoft1@gmail.com"
-                }
-            ],
-            "description": "Flexible and production-ready multi-tenancy bundle for Symfony.",
-            "support": {
-                "issues": "https://github.com/RamyHakam/multi_tenancy_bundle/issues",
-                "source": "https://github.com/RamyHakam/multi_tenancy_bundle/tree/v2.9.3"
-            },
-            "time": "2025-11-07T18:25:30+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -4863,59 +4732,6 @@
                 }
             ],
             "time": "2025-11-12T15:21:00+00:00"
-        },
-        {
-            "name": "symfony/orm-pack",
-            "version": "v2.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/orm-pack.git",
-                "reference": "0b6bfd50c44c63cc2207c684eb6efee89a525845"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/orm-pack/zipball/0b6bfd50c44c63cc2207c684eb6efee89a525845",
-                "reference": "0b6bfd50c44c63cc2207c684eb6efee89a525845",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/dbal": "^3",
-                "doctrine/doctrine-bundle": "*",
-                "doctrine/doctrine-migrations-bundle": "*",
-                "doctrine/orm": "*"
-            },
-            "conflict": {
-                "php": "<8.1"
-            },
-            "type": "symfony-pack",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "A pack for the Doctrine ORM",
-            "support": {
-                "issues": "https://github.com/symfony/orm-pack/issues",
-                "source": "https://github.com/symfony/orm-pack/tree/v2.6.0"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/nicolas-grekas",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2025-12-19T07:18:51+00:00"
         },
         {
             "name": "symfony/password-hasher",
@@ -10365,7 +10181,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -10373,6 +10189,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }

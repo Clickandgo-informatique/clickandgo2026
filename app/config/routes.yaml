@@ -1,10 +1,7 @@
-# Routes globales (sans tenant)
-controllers:
-    resource:
-        path: ../src/Controller/App/
-        namespace: App\Controller\App
+main_controllers:
+    resource: ../src/Controller/Main/
     type: attribute
 
-# Routes tenant (avec préfixe /{tenantKey})
 tenant_routes:
     resource: routes/tenant.yaml
+    prefix: /{tenantKey}
