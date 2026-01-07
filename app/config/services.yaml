@@ -3,10 +3,11 @@ services:
         autowire: true
         autoconfigure: true
 
-    App\:
-        resource: "../src/"
-        exclude:
-            - "../src/DependencyInjection/"
-            - "../src/Entity/"
-            - "../src/Kernel.php"
-            - "../src/Tests/"
+    # Factory qui crée la vraie connexion tenant
+    App\Tenant\TenantConnectionFactory: ~
+
+    # Wrapper utilisé par DoctrineBundle 3.x
+    App\Tenant\TenantConnectionWrapper:
+        arguments:
+            - '%env(resolve:DATABASE_URL_TENANT_BASE)%'
+            - '@App\Tenant\TenantConnectionFactory'
