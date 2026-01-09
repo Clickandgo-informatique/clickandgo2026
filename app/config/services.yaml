@@ -3,11 +3,15 @@ services:
         autowire: true
         autoconfigure: true
 
-    # Factory qui crée la vraie connexion tenant
-    App\Tenant\TenantConnectionFactory: ~
+    App\Tenant\TenantContext: ~
+    App\Tenant\TenantResolver: ~
+    App\Tenant\TenantProvider: ~
+    App\Tenant\TenantEntityManagerProvider: ~
 
-    # Wrapper utilisé par DoctrineBundle 3.x
-    App\Tenant\TenantConnectionWrapper:
-        arguments:
-            - '%env(resolve:DATABASE_URL_TENANT_BASE)%'
-            - '@App\Tenant\TenantConnectionFactory'
+    App\Tenant\TenantRequestListener:
+        tags:
+            - {
+                  name: kernel.event_listener,
+                  event: kernel.request,
+                  method: onKernelRequest,
+              }

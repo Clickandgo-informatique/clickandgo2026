@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20260105113832 extends AbstractMigration
+final class Version20260109122119 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,9 +20,9 @@ final class Version20260105113832 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE SEQUENCE tenant_db_config_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('CREATE TABLE tenant_db_config (id INT NOT NULL, tenantKey VARCHAR(255) NOT NULL, databaseName VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_E665B59C44AF0953 ON tenant_db_config (tenantKey)');
+        $this->addSql('CREATE SEQUENCE tenant_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE TABLE tenant (id INT NOT NULL, slug VARCHAR(255) NOT NULL, dbName VARCHAR(255) NOT NULL, dbHost VARCHAR(255) NOT NULL, dbPort INT NOT NULL, dbUser VARCHAR(255) NOT NULL, dbPassword VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_4E59C462989D9B62 ON tenant (slug)');
         $this->addSql('CREATE TABLE messenger_messages (id BIGSERIAL NOT NULL, body TEXT NOT NULL, headers TEXT NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, available_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, delivered_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_75EA56E0FB7336F0E3BD61CE16BA31DBBF396750 ON messenger_messages (queue_name, available_at, delivered_at, id)');
         $this->addSql('COMMENT ON COLUMN messenger_messages.created_at IS \'(DC2Type:datetime_immutable)\'');
@@ -42,8 +42,8 @@ final class Version20260105113832 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');
-        $this->addSql('DROP SEQUENCE tenant_db_config_id_seq CASCADE');
-        $this->addSql('DROP TABLE tenant_db_config');
+        $this->addSql('DROP SEQUENCE tenant_id_seq CASCADE');
+        $this->addSql('DROP TABLE tenant');
         $this->addSql('DROP TABLE messenger_messages');
     }
 }

@@ -1,11 +1,20 @@
 doctrine:
     dbal:
-        default_connection: tenant
+        default_connection: main
 
         connections:
             main:
                 url: "%env(resolve:DATABASE_URL_MAIN)%"
 
-            tenant:
-                wrapper_class: App\Tenant\TenantConnectionWrapper
-                url: "%env(resolve:DATABASE_URL_TENANT_BASE)%"
+    orm:
+        default_entity_manager: main
+
+        entity_managers:
+            main:
+                connection: main
+                mappings:
+                    Main:
+                        is_bundle: false
+                        type: attribute
+                        dir: "%kernel.project_dir%/src/Entity/Main"
+                        prefix: 'App\Entity\Main'

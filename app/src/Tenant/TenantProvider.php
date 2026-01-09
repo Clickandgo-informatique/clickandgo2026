@@ -2,19 +2,17 @@
 
 namespace App\Tenant;
 
-use App\Entity\Main\Tenant;
+use App\Entity\Main\TenantDbConfig;
 use Doctrine\ORM\EntityManagerInterface;
 
 class TenantProvider
 {
-    public function __construct(private EntityManagerInterface $mainEm)
-    {
-    }
+    public function __construct(private EntityManagerInterface $emMain) {}
 
-    public function getTenantBySlug(string $slug): ?Tenant
+    public function getTenantBySlug(string $slug): ?TenantDbConfig
     {
-        return $this->mainEm
-            ->getRepository(Tenant::class)
+        return $this->emMain
+            ->getRepository(TenantDbConfig::class)
             ->findOneBy(['slug' => $slug]);
     }
 }

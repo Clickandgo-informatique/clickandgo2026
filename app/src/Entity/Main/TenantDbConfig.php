@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'tenant')]
-class Tenant
+class TenantDbConfig
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
