@@ -1,22 +1,50 @@
 FROM php:8.3-fpm
 
-# Libs système
-RUN apt-get update && apt-get install -y netcat-openbsd postgresql-client\
-    git unzip libicu-dev libzip-dev libonig-dev libpq-dev \
-    && docker-php-ext-install intl zip opcache pdo_mysql pdo_pgsql
+# -------------------------------------------------------
+# 1. Dépendances système
+# -------------------------------------------------------
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    unzip \
+    make \
+    bash \
+    netcat-openbsd \
+    postgresql-client \
+    libicu-dev \
+    libzip-dev \
+    libonig-dev \
+    libpq-dev \
+    && docker-php-ext-install intl zip opcache pdo pdo_pgsql
 
-# Redis extension
+# -------------------------------------------------------
+# 2. Extension Redis
+# -------------------------------------------------------
 RUN pecl install redis \
     && docker-php-ext-enable redis
 
-# Composer
+# -------------------------------------------------------
+# 3. Composer
+# -------------------------------------------------------
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copier l'entrypoint dans l'image
+# -------------------------------------------------------
+# 4. Symfony CLI (méthode stable officielle)
+# -------------------------------------------------------
+RUN curl -1sLf \
+  'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' \
+  | bash \
+  && apt-get install -y symfony-cli
+
+# -------------------------------------------------------
+# 5. Entrypoint
+# -------------------------------------------------------
 COPY docker/php/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
+# -------------------------------------------------------
+# 6. Dossier de travail
+# -------------------------------------------------------
 WORKDIR /var/www/html
 
-# IMPORTANT : ne pas définir d'ENTRYPOINT ici
-# On laisse docker-compose gérer l'entrypoint
+# IMPORTANT : pas d'ENTRYPOINT ici

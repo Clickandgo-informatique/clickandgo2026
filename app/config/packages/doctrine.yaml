@@ -6,6 +6,9 @@ doctrine:
             main:
                 url: "%env(resolve:DATABASE_URL_MAIN)%"
 
+            tenant:
+                url: "%env(resolve:DATABASE_URL_TENANT)%"
+
     orm:
         default_entity_manager: main
 
@@ -18,3 +21,18 @@ doctrine:
                         type: attribute
                         dir: "%kernel.project_dir%/src/Entity/Main"
                         prefix: 'App\Entity\Main'
+
+                    Portal:
+                        is_bundle: false
+                        type: attribute
+                        dir: "%kernel.project_dir%/src/Entity/Portal"
+                        prefix: 'App\Entity\Portal'
+
+            tenant:
+                connection: tenant
+                mappings:
+                    Tenant:
+                        is_bundle: false
+                        type: attribute
+                        dir: "%kernel.project_dir%/src/Entity/Tenant"
+                        prefix: 'App\Entity\Tenant'

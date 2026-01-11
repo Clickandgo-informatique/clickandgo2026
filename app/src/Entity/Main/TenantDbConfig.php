@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'tenant')]
+#[ORM\HasLifecycleCallbacks]
 class TenantDbConfig
 {
     #[ORM\Id]
@@ -31,9 +32,54 @@ class TenantDbConfig
     #[ORM\Column]
     private string $dbPassword;
 
-    // -------------------------
-    // Getters / Setters
-    // -------------------------
+    // ---------------------------------------------------------
+    // STATUS MANAGEMENT
+    // ---------------------------------------------------------
+
+    #[ORM\Column(length: 20)]
+    private string $status = 'active'; // active, suspended, deleting, deleted, error
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $deletedAt = null;
+
+    // ---------------------------------------------------------
+    // AUDIT LOGS
+    // ---------------------------------------------------------
+
+    #[ORM\Column(nullable: true)]
+    private ?string $createdBy = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $updatedBy = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $deletedBy = null;
+
+    #[ORM\Column]
+    private \DateTimeImmutable $createdAt;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    // ---------------------------------------------------------
+    // LIFECYCLE CALLBACKS
+    // ---------------------------------------------------------
+
+    #[ORM\PrePersist]
+    public function onPrePersist(): void
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function onPreUpdate(): void
+    {
+        $this->updatedAt = new \DateTimeImmutable();
+    }
+
+    // ---------------------------------------------------------
+    // GETTERS / SETTERS
+    // ---------------------------------------------------------
 
     public function getId(): ?int
     {
@@ -104,5 +150,74 @@ class TenantDbConfig
     {
         $this->dbPassword = $dbPassword;
         return $this;
+    }
+
+    // STATUS
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    public function getDeletedAt(): ?\DateTimeImmutable
+    {
+        return $this->deletedAt;
+    }
+
+    public function setDeletedAt(?\DateTimeImmutable $deletedAt): self
+    {
+        $this->deletedAt = $deletedAt;
+        return $this;
+    }
+
+    // AUDIT
+
+    public function getCreatedBy(): ?string
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?string $createdBy): self
+    {
+        $this->createdBy = $createdBy;
+        return $this;
+    }
+
+    public function getUpdatedBy(): ?string
+    {
+        return $this->updatedBy;
+    }
+
+    public function setUpdatedBy(?string $updatedBy): self
+    {
+        $this->updatedBy = $updatedBy;
+        return $this;
+    }
+
+    public function getDeletedBy(): ?string
+    {
+        return $this->deletedBy;
+    }
+
+    public function setDeletedBy(?string $deletedBy): self
+    {
+        $this->deletedBy = $deletedBy;
+        return $this;
+    }
+
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
     }
 }

@@ -3,6 +3,18 @@ services:
         autowire: true
         autoconfigure: true
 
+    Doctrine\Bundle\FixturesBundle\Loader\SymfonyFixturesLoader:
+        alias: "doctrine.fixtures.loader"
+
+    # Charge automatiquement TOUTES les classes dans src/
+    App\:
+        resource: "../src/"
+        exclude:
+            - "../src/DependencyInjection/"
+            - "../src/Entity/"
+            - "../src/Kernel.php"
+
+    # Tes services spécifiques
     App\Tenant\TenantContext: ~
     App\Tenant\TenantResolver: ~
     App\Tenant\TenantProvider: ~
