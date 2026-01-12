@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Tenant;
 
 use App\Tenant\TenantContext;
 use Doctrine\ORM\EntityManagerInterface;

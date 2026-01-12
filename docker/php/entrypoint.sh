@@ -26,6 +26,23 @@ echo "✅ PostgreSQL is ready!"
 
 
 echo "------------------------------------------------------------"
+echo "🔍 Checking for existing migration PHP files..."
+echo "------------------------------------------------------------"
+
+# Count only real migration files (*.php), ignore .gitignore, .gitkeep, etc.
+MIGRATION_FILES=$(find migrations -maxdepth 1 -type f -name "*.php" | wc -l)
+
+if [ "$MIGRATION_FILES" -eq 0 ]; then
+    echo "⚠️  No migration PHP files found. Generating initial migration..."
+    php bin/console make:migration --no-interaction || true
+    MIGRATION_GENERATED=1
+else
+    echo "✅ Migration PHP files detected."
+    MIGRATION_GENERATED=0
+fi
+
+
+echo "------------------------------------------------------------"
 echo "🔍 Checking if main database is empty..."
 echo "------------------------------------------------------------"
 
@@ -37,10 +54,18 @@ echo "📊 Tables found: $TABLE_COUNT"
 
 if [ "$TABLE_COUNT" -eq 0 ]; then
     echo "------------------------------------------------------------"
-    echo "🆕 Main DB empty — running migrations + fixtures"
+    echo "🆕 Main DB empty — preparing schema"
     echo "------------------------------------------------------------"
 
-    php bin/console doctrine:migrations:migrate --no-interaction || true
+    if [ "$MIGRATION_GENERATED" -eq 1 ]; then
+        echo "🧩 Running newly generated migration"
+        php bin/console doctrine:migrations:migrate --no-interaction || true
+    else
+        echo "🧩 Running existing migrations"
+        php bin/console doctrine:migrations:migrate --no-interaction || true
+    fi
+
+    echo "🧪 Loading fixtures"
     php bin/console doctrine:fixtures:load --no-interaction || true
 else
     echo "------------------------------------------------------------"

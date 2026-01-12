@@ -2,7 +2,7 @@
 
 namespace App\Entity\Portal;
 
-use App\Entity\Main\TenantDbConfig;
+use App\Entity\Portal\TenantDbConfig;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;

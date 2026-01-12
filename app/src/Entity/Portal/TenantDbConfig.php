@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Entity\Main;
+namespace App\Entity\Portal;
 
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-#[ORM\Table(name: 'tenant')]
+#[ORM\Table(name: 'tenant_db_config')]
 #[ORM\HasLifecycleCallbacks]
 class TenantDbConfig
 {
@@ -14,22 +14,25 @@ class TenantDbConfig
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(unique: true)]
+    #[ORM\Column(length: 255)]
+    private string $name;
+
+    #[ORM\Column(length: 100, unique: true)]
     private string $slug;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 255)]
     private string $dbName;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 255)]
     private string $dbHost;
 
     #[ORM\Column]
     private int $dbPort = 5432;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 255)]
     private string $dbUser;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 255)]
     private string $dbPassword;
 
     // ---------------------------------------------------------
@@ -46,13 +49,13 @@ class TenantDbConfig
     // AUDIT LOGS
     // ---------------------------------------------------------
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(nullable: true, length: 255)]
     private ?string $createdBy = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(nullable: true, length: 255)]
     private ?string $updatedBy = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(nullable: true, length: 255)]
     private ?string $deletedBy = null;
 
     #[ORM\Column]
@@ -219,5 +222,18 @@ class TenantDbConfig
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
+    }
+
+    // NAME
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
     }
 }

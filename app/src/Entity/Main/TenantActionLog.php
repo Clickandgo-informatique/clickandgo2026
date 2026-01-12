@@ -2,6 +2,7 @@
 
 namespace App\Entity\Main;
 
+use App\Entity\Portal\TenantDbConfig;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -36,19 +37,53 @@ class TenantActionLog
 
     // Getters / setters...
 
-    public function getId(): ?int { return $this->id; }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
-    public function getTenant(): TenantDbConfig { return $this->tenant; }
-    public function setTenant(TenantDbConfig $tenant): self { $this->tenant = $tenant; return $this; }
+    public function getTenant(): TenantDbConfig
+    {
+        return $this->tenant;
+    }
+    public function setTenant(TenantDbConfig $tenant): self
+    {
+        $this->tenant = $tenant;
+        return $this;
+    }
 
-    public function getAction(): string { return $this->action; }
-    public function setAction(string $action): self { $this->action = $action; return $this; }
+    public function getAction(): string
+    {
+        return $this->action;
+    }
+    public function setAction(string $action): self
+    {
+        $this->action = $action;
+        return $this;
+    }
 
-    public function getDetails(): ?string { return $this->details; }
-    public function setDetails(?string $details): self { $this->details = $details; return $this; }
+    public function getDetails(): ?string
+    {
+        return $this->details;
+    }
+    public function setDetails(?string $details): self
+    {
+        $this->details = $details;
+        return $this;
+    }
 
-    public function getPerformedBy(): ?string { return $this->performedBy; }
-    public function setPerformedBy(?string $performedBy): self { $this->performedBy = $performedBy; return $this; }
+    public function getPerformedBy(): ?string
+    {
+        return $this->performedBy;
+    }
+    public function setPerformedBy(?string $performedBy): self
+    {
+        $this->performedBy = $performedBy;
+        return $this;
+    }
 
-    public function getPerformedAt(): \DateTimeImmutable { return $this->performedAt; }
+    public function getPerformedAt(): \DateTimeImmutable
+    {
+        return $this->performedAt;
+    }
 }
